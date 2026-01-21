@@ -87,10 +87,4 @@ python main.py
 
 ---
 
-### Next Step
-Generate a `requirements.txt` file for easy setup:
-```
-pip install -r requirements.txt
-```
-# TG_cloud_storage
-unlimited cloud storage using telegram. Constraints - per file size limit 2GB, number of files = unlimited
+
