@@ -1,90 +1,123 @@
-# 📁 Telegram Unlimited File Store Bot
+# 📁 Sid's Telegram Unlimited File Store Bot 
 
-This is a simple tool that turns a Telegram Channel into your own unlimited, free cloud storage.
-
-## How it works
-1. You send a file to the bot.
-2. The bot saves it in a private channel (your free cloud).
-3. The bot gives you a short link or ID.
-4. You (or anyone with the link) can get the file back instantly.
+An advanced Telegram bot that turns a **Telegram Supergroup** into your own **unlimited, free cloud storage**.
 
 ---
 
-## 🛠 Step 1: Create Your Bot
+## Features 
+
+- **Topic-Based Storage**  
+  Automatically creates a unique forum topic for every user to keep files neatly organized.
+
+- **Secure Sharing**  
+  Share file links with others. If the requester isn’t the owner, you receive an **Approve / Deny** request.
+
+- **Environment-Based Configuration**  
+  Secure and clean setup using `.env` files.
+
+---
+
+## Step 1: Create Your Bot
+
 1. Open Telegram and search for **@BotFather**
 2. Click **Start** and type `/newbot`
-3. Name your bot (example: My File Store)
+3. Name your bot (example: `My File Store`)
 4. Choose a username (must end with `bot`)
-5. Copy the API Token given by BotFather  
-   Example:
-   ```
-   123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
-   ```
-   ⚠️ Keep this token secret
+5. Copy the **API Token** provided by BotFather  
+
+> ⚠️ **Important:** Keep this token secret.
 
 ---
 
-## ☁️ Step 2: Create Your Storage Channel
-1. Create a **New Channel** (Private)
-2. Open Channel Info → Administrators → Add Admin
-3. Add your bot
-4. Allow **Post Messages** permission
+## Step 2: Create Your Storage Group
+
+1. Create a **New Group** (not a Channel)
+2. Go to **Group Info → Edit → Permissions**
+3. Enable **Topics** (this converts the group into a Supergroup with forums)
+4. Add your bot to the group as an **Administrator**
+5. Grant the bot permissions to:
+   - Manage Topics
+   - Post Messages
 
 ---
 
-## 🆔 Step 3: Get the Channel ID
-1. Send any message in the channel (example: hello)
-2. Forward it to **@JsonDumpBot**
-3. Look for `forward_from_chat`
-4. Copy the `id` value (starts with `-100`)
+## Step 3: Get the Group ID
 
-Example:
-```
+1. Send any message in the group (example: `hello`)
+2. Forward that message to **@JsonDumpBot** (or any ID bot)
+3. Look for the `forward_from_chat` section
+4. Copy the `id` value (usually starts with `-100`)
+
+**Example:**
+```text
 -1001234567890
 ```
 
 ---
 
-## 📝 Step 4: Configure the Code
-Open `main.py` and replace:
+## Step 4: Configure the Environment
 
-```python
-BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"
+1. Create a file named `.env` in the same directory as `bot.py`
+2. Add the following contents:
+
+```ini
+BOT_TOKEN=123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11
+GROUP_ID=-1001234567890
 ```
 
-with your bot token.
+### Variable Explanation
 
-Replace:
-
-```python
-CHANNEL_ID = "-1001234567890"
-```
-
-with your channel ID.
-
-Save the file.
+- **BOT_TOKEN** – The token received from BotFather  
+- **GROUP_ID** – The ID of your Telegram Supergroup
 
 ---
 
-## 🚀 Step 5: Install & Run
-Make sure Python is installed.
+## Step 5: Install & Run
 
-Install dependency:
+### Prerequisites
+- Python 3.9 or higher installed
+
+### Install Dependencies
+
 ```bash
-pip install python-telegram-bot
+pip install python-telegram-bot python-dotenv
 ```
 
-Run the bot:
+### Run the Bot
+
 ```bash
-python main.py
+python bot.py
 ```
 
 ---
 
-## ❓ How to Use
-- **Upload:** Send any file to the bot
-- **Download:** Click the link or send the short ID back to the bot
+## How to Use
+
+### Uploading Files
+
+- Send any file (Document, Video, Photo, Audio) to the bot
+- The bot creates a **private topic** for you in the storage group
+- You receive a **unique retrieval link**
+
+### Downloading & Sharing
+
+- **Owner Access:** Click the link to download instantly
+- **Sharing:** Send the link to someone else
+- The bot notifies you when they attempt access
+- Approve or deny access using:
+  - ✅ Approve
+  - ❌ Deny
 
 ---
 
+## Available Commands
 
+```text
+/start  - Wake up the bot
+/list   - View all files you have uploaded
+```
+
+---
+
+Happy storing 
+            -sid
